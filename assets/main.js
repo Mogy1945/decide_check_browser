@@ -1,5 +1,5 @@
 function shuffleContent(container, shuffuleNum) {
-    const content = container.find("> *");
+    const content = container.find("> *:not(.off)");
     const total = content.length;
     content.each(function () {
         content.eq(Math.floor(Math.random() * total)).prependTo(container);
@@ -46,5 +46,17 @@ $(function () {
         setNum(headNum, shuffuleNum);
         setName(shuffuleNum);
         shuffleContent($('.browser-box'), shuffuleNum);
+    });
+
+    $('.display-minus').on('click', function () {
+        const $this = $(this);
+        const $this_parent = $this.closest('.display-text')
+        const index = $('.display-text').index($this_parent)
+
+        $this_parent.remove();
+        $('.browser-text').eq(index).remove();
+        $('.name-text').eq(index).remove();
+        // const index_off = $('.browser-text').index($target_off);
+
     });
 });
