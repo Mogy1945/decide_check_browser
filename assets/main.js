@@ -64,8 +64,6 @@ function _setName(shuffuleNum) {
 function _setNum(headNum, shuffuleNum) {
     $('.name-box input').each(function (i) {
         $('.result-history-box').find('.history-box').eq(shuffuleNum).prev('p').text(`${headNum + 1}回目`);
-        console.log(1)
-
     })
 }
 
