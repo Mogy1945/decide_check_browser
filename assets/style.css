@@ -58,3 +58,7 @@ label {
   background-color: gray;
   pointer-events: none;
 }
+
+.reset-text{
+  margin-bottom: 20px;
+}
