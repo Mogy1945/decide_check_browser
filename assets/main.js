@@ -1,9 +1,7 @@
 function shuffuleBtnEnableCheck() {
     let noValFlag = false;
 
-    $('.name-text').on('change', function () {
-        shuffuleBtnEnableCheck();
-    });
+    $('.name-text').on('change', shuffuleBtnEnableCheck);
 
     $('.name-text:visible').each(function () {
         const $this = $(this);
@@ -37,28 +35,19 @@ function shuffuleControl() {
 
 function _shuffleContent(container, shuffuleNum) {
     const content = container.find("> *:not(.off)");
-    const total = content.length;
-    content.each(function () {
-        content.eq(Math.floor(Math.random() * total)).prependTo(container);
-    });
+    content.sort(() => Math.random() - 0.5).prependTo(container);
 
-    $('.browser-box input').each(function (i) {
-        const $this = $(this);
-        const val = $this.val();
-        const index = i;
-
-        $('.result-history-box').find('.history-box').eq(shuffuleNum).find('.history-browser p').eq(index).text(val);
+    $('.browser-box input').each((i, element) => {
+        const val = $(element).val();
+        $('.result-history-box .history-box').eq(shuffuleNum).find('.history-browser p').eq(i).text(val);
     });
 }
 
 function _setName(shuffuleNum) {
-    $('.name-box input').each(function (i) {
-        const $this = $(this);
-        const val = $this.val();
-        const index = i;
-
-        $('.result-history-box').find('.history-box').eq(shuffuleNum).find('.name-browser p').eq(index).text(val);
-    })
+    $('.name-box input').each((i, element) => {
+        const val = $(element).val();
+        $('.result-history-box .history-box').eq(shuffuleNum).find('.name-browser p').eq(i).text(val);
+    });
 }
 
 function _setNum(headNum, shuffuleNum) {
@@ -69,11 +58,10 @@ function _setNum(headNum, shuffuleNum) {
 
 function displayMinus() {
     $('.display-minus').on('click', function () {
-        const $this = $(this);
-        const $this_parent = $this.closest('.display-text')
-        const index = $('.display-text').index($this_parent)
+        const $displayText = $(this).closest('.display-text');
+        const index = $('.display-text').index($displayText);
 
-        $this_parent.remove();
+        $displayText.remove();
         $('.browser-text').eq(index).remove();
         $('.name-text').eq(index).remove();
 
