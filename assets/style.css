@@ -53,3 +53,8 @@ label {
 .btn-box .shuffle-btn:hover {
   background-color: rgba(42, 61, 149, 0.4);
 }
+
+.btn-box .shuffle-btn.disabled{
+  background-color: gray;
+  pointer-events: none;
+}
